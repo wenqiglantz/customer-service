@@ -1,0 +1,79 @@
+server:
+  port: 9100
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    io.dapr: DEBUG
+
+# Spring
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jackson: 
+    default-property-inclusion: NON_NULL
+
+  datasource:
+    name: customer-service
+    jdbc-url: jdbc:h2:mem:testdb;Mode=MSSQLServer
+    url: jdbc:h2:mem:testdb;Mode=MSSQLServer
+    username: sa
+    # It needs to be empty for h2 (enter sa into h2-console)
+    password: # It needs to be empty for h2
+    type: # It needs to be empty for h2
+    driver-class-name: org.h2.Driver #it has to be populated to avoid "Failed to load driver in either of HikariConfig class loader or Thread context classloader" error
+    tlsEnabled: true
+    minimum-idle: 10 # The minimum number of established connections that should be kept in the pool at all times.
+    maximum-pool-size: 50 # The maximum number of connections that should be kept in the pool at all times.
+    idle-timeout: 30000 # The maximum amount of time in milliseconds that a connection is allowed to sit idle in connection pool
+    max-lifetime: 60000 # The maximum lifetime of a connection in the pool
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    pageable:
+      page-size: 100
+
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+    enabled: true
+
+  cloud:
+    config:
+      enabled: false
+
+management:
+  endpoints:
+    web:
+      base-path: /monitoring
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: 'ALWAYS'
+  health: 
+    circuitbreakers: 
+      enabled: true
+
+---
+# need this block for local build even though some params can be left empty
+global:
+  datasource:
+    truststore:
+      location: /tmp/mssql.jks #fake placeholder value to avoid local build error
+      password:
+      content:
+      type: JKS
+
+---
+spring:
+  config:
+    activate:
+      on-profile: wiremock
+
+  urls:
+    base-url: http://localhost:8099

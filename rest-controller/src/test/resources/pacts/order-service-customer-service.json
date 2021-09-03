@@ -1,0 +1,130 @@
+{
+  "consumer": {
+    "name": "order-service"
+  },
+  "messages": [
+    {
+      "contents": {
+        "customerId": "595eed0c-eff5-4278-90ad-b952f18dbee8",
+        "firstName": "test",
+        "lastName": "test",
+        "status": "CREATED"
+      },
+      "description": "valid CustomerWasCreated from provider",
+      "matchingRules": {
+        "body": {
+          "$.customerId": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "regex",
+                "regex": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+              }
+            ]
+          },
+          "$.firstName": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "regex",
+                "regex": "^[a-zA-Z0-9]{1,16}$"
+              }
+            ]
+          },
+          "$.lastName": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "regex",
+                "regex": "^[a-zA-Z0-9]{1,16}$"
+              }
+            ]
+          }
+        }
+      },
+      "metaData": {
+        "contentType": "application/json"
+      }
+    },
+    {
+      "contents": {
+        "customerId": "595eed0c-eff5-4278-90ad-b952f18dbee8",
+        "status": "DELETED"
+      },
+      "description": "valid CustomerWasDeleted from provider",
+      "matchingRules": {
+        "body": {
+          "$.customerId": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "regex",
+                "regex": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+              }
+            ]
+          }
+        }
+      },
+      "metaData": {
+        "Content-Type": "application/json",
+        "pubsubName": "customer-order-integration",
+        "route": "/customer-operations",
+        "topic": "order-service"
+      }
+    },
+    {
+      "contents": {
+        "customerId": "595eed0c-eff5-4278-90ad-b952f18dbee8",
+        "firstName": "testUpdated",
+        "lastName": "test",
+        "status": "UPDATED"
+      },
+      "description": "valid CustomerWasUpdated from provider",
+      "matchingRules": {
+        "body": {
+          "$.customerId": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "regex",
+                "regex": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+              }
+            ]
+          },
+          "$.firstName": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "regex",
+                "regex": "^[a-zA-Z0-9]{1,16}$"
+              }
+            ]
+          },
+          "$.lastName": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "regex",
+                "regex": "^[a-zA-Z0-9]{1,16}$"
+              }
+            ]
+          }
+        }
+      },
+      "metaData": {
+        "contentType": "application/json"
+      }
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.2.6"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "customer-service"
+  }
+}

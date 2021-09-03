@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="create-customer-table" author="wenqi.glantz">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="CUSTOMER"/>
+            </not>
+        </preConditions>
+        <createTable tableName="CUSTOMER">
+            <column name="ID" type="varchar2(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="VERSION" type="bigint"/>
+            <column name="CUSTOMER_ID" type="varchar2(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="varchar2(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="LAST_NAME" type="varchar2(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="INSERTED_AT" type="timestamp(6)"/>
+            <column name="INSERTED_BY" type="varchar2(255)"/>
+            <column name="UPDATED_AT" type="timestamp(6)"/>
+            <column name="UPDATED_BY" type="varchar2(255)"/>
+        </createTable>
+        <addUniqueConstraint tableName="CUSTOMER" constraintName="UDX_CUSTOMER"
+                             columnNames="CUSTOMER_ID"/>
+    </changeSet>
+
+</databaseChangeLog>

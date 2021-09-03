@@ -1,0 +1,52 @@
+version: '3.3'
+services:
+  # customer-service and its Dapr sidecar
+  # zipkin
+
+  ############################
+  # customer-service and its Dapr sidecar
+  ############################
+  customer-service:
+    image: customer-service
+    build:
+      context: rest-controller
+      dockerfile: Dockerfile
+    container_name: customer-service
+    ports:
+      - 9100:9100
+    networks:
+      - customer-service
+
+  customer-service-dapr:
+    image: daprio/daprd:edge
+    container_name: Dapr.Sidecar-customer-service
+    command: ["./daprd",
+              "-app-id", "customer-service",
+              "-app-port", "9100",
+              "-config", "/dapr-components/config.yaml",
+              "-log-level", "debug",
+              "-components-path", "/dapr-components"]
+    volumes:
+      - "./dapr-components:/dapr-components"
+    depends_on:
+      - customer-service
+    network_mode: "service:customer-service"
+
+  zipkin:
+    image: openzipkin/zipkin-slim
+
+  ############################
+  # Redis (commented out as we are using a public mqtt broker for testing, no need for local instance of redis or mosquitto)
+  ############################
+#  redis:
+#    image: redis:alpine
+#    container_name: Dapr.redis
+#    ports:
+#      - "6379"
+#    networks:
+#      - customer-service
+
+networks:
+  customer-service:
+    external:
+      name: local_customer_service
