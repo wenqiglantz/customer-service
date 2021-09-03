@@ -20,6 +20,8 @@
    * 1. Clone the git repo in to your local directory from the github repository
         
    * 2. Open the command prompt and navigate to the main project directory.
+  
+   * 3. Copy mssql.jks file located under rest-controller submodule to under "tmp" directory on your local env. Empty file merely for local testing purpose.
 
 
 * ** Run Application on Local Docker Containers**
