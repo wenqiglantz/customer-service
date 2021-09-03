@@ -1,4 +1,5 @@
 Feature: Customer functionalities
+  This feature contains a list of functionalities related to customer
 
   Scenario: Creating a new customer
 
