@@ -39,5 +39,4 @@ public class CustomerSteps {
         assertThat(customer.getFirstName(), is(equalTo("first name")));
         assertThat(customer.getLastName(), is(equalTo("last name")));
     }
-
 }
