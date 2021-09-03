@@ -36,7 +36,7 @@
 		<hamcrest.version>2.2</hamcrest.version>
 		<cucumber.version>6.10.4</cucumber.version>
 		<cucumber-reporting.version>5.5.3</cucumber-reporting.version>
-		<pact-provider-junit5.version>4.2.6</pact-provider-junit5.version>
+		<pact-provider-junit5.version>4.2.9</pact-provider-junit5.version>
 
 		<maven.compiler.version>3.8.1</maven.compiler.version>
 		<maven.surefire.version>2.22.2</maven.surefire.version>
