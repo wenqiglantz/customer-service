@@ -39,7 +39,7 @@ public class HttpClient {
     }
 
     public CustomerInfo getCustomer(String customerId) {
-        return restTemplate.getForEntity(customerEndpoint(), CustomerInfo.class, customerId).getBody();
+        return restTemplate.getForEntity(customerEndpoint() + "/" + customerId, CustomerInfo.class, customerId).getBody();
     }
 
     public void clean() {

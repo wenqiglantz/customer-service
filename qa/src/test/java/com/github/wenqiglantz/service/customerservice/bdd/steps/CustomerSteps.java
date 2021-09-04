@@ -4,17 +4,19 @@ import com.github.wenqiglantz.service.customerservice.bdd.HttpClient;
 import com.github.wenqiglantz.service.customerservice.data.CustomerInfo;
 import com.github.wenqiglantz.service.customerservice.persistence.entity.Customer;
 import com.github.wenqiglantz.service.customerservice.persistence.repository.CustomerRepository;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 
-import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 @Slf4j
 public class CustomerSteps {
@@ -25,18 +27,37 @@ public class CustomerSteps {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @When("^CustomerInfo with the following inputs is passed into createCustomer endpoint:$")
-    public void customer_info_passed_in(CustomerInfo customerInfo) {
-        log.info("Passing customerInfo {} to createCustomer endpoint " + customerInfo);
-        int statusCode = httpClient.post(customerInfo);
-        assertThat(statusCode, is(equalTo(HttpStatus.CREATED.value())));
+    @Given("^the collection of customers:$")
+    public void collection_of_customers(DataTable dataTable) {
+        dataTable.asList(CustomerInfo.class).forEach(customerInfo -> {
+            saveCustomer((CustomerInfo)customerInfo);
+        });
     }
 
-    @Then("^A new customer is created$")
-    public void new_customer_created() {
-        List<Customer> customers = customerRepository.findAll();
-        Customer customer = customers.get(0);
-        assertThat(customer.getFirstName(), is(equalTo("first name")));
-        assertThat(customer.getLastName(), is(equalTo("last name")));
+    @When("^customerId (.+) is passed in to retrieve the customer details$")
+    public void get_customer_details_by_id(String customerId) {
+        CustomerInfo customerInfo = httpClient.getCustomer(customerId);
+        assertThat(customerInfo, is(notNullValue()));
     }
+
+    @Then("^The customer detail is retrieved$")
+    public void customer_detail_retrieved(DataTable dataTable) {
+        dataTable.asList(CustomerInfo.class).forEach(customerInfo -> {
+            Optional<Customer> customerOptional =
+                    customerRepository.findByCustomerId(((CustomerInfo)customerInfo).getCustomerId());
+            if (customerOptional.isPresent()){
+                assertThat(customerOptional.get().getFirstName(), is(equalTo("John")));
+                assertThat(customerOptional.get().getLastName(), is(equalTo("Smith")));
+            }
+        });
+    }
+
+    private void saveCustomer(CustomerInfo customerInfo) {
+        customerRepository.save(Customer.builder()
+                .customerId(customerInfo.getCustomerId())
+                .firstName(customerInfo.getFirstName())
+                .lastName(customerInfo.getLastName())
+                .build());
+    }
+
 }

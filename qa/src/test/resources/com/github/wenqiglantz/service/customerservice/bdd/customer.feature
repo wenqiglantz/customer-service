@@ -1,10 +1,15 @@
 Feature: Customer functionalities
   This feature contains a list of functionalities related to customer
 
-  Scenario: Creating a new customer
+  Scenario: get a customer detail by customerId
 
-    When CustomerInfo with the following inputs is passed into createCustomer endpoint:
-      | firstName   | lastName   |
-      | first name  | last name  |
+    Given the collection of customers:
+      | customerId                       | firstName   | lastName   |
+      | ABCDEFG12345678910HIJKLMNOP12345 | John        | Smith      |
+      | ABCDEFG12345678910HIJKLMNOP12346 | Jane        | Smith      |
 
-    Then A new customer is created
+    When customerId ABCDEFG12345678910HIJKLMNOP12345 is passed in to retrieve the customer details
+
+    Then The customer detail is retrieved
+      | customerId                       | firstName   | lastName   |
+      | ABCDEFG12345678910HIJKLMNOP12345 | John        | Smith      |
