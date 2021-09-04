@@ -46,8 +46,8 @@ public class CustomerSteps {
             Optional<Customer> customerOptional =
                     customerRepository.findByCustomerId(((CustomerInfo)customerInfo).getCustomerId());
             if (customerOptional.isPresent()){
-                assertThat(customerOptional.get().getFirstName(), is(equalTo("John")));
-                assertThat(customerOptional.get().getLastName(), is(equalTo("Smith")));
+                assertThat(customerOptional.get().getFirstName(), is(equalTo(((CustomerInfo)customerInfo).getFirstName())));
+                assertThat(customerOptional.get().getLastName(), is(equalTo(((CustomerInfo)customerInfo).getLastName())));
             }
         });
     }
@@ -59,5 +59,4 @@ public class CustomerSteps {
                 .lastName(customerInfo.getLastName())
                 .build());
     }
-
 }
