@@ -16,10 +16,14 @@ import org.jmock.lib.legacy.ClassImposteriser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.Collections;
 import java.util.List;
 
 public class CustomerControllerTest {
@@ -71,16 +75,17 @@ public class CustomerControllerTest {
 
     @Test
     public void getCustomers() {
+        Pageable pageable = PageRequest.of(0, 1);
         context.checking(new Expectations(){
             {
-                oneOf(customerService).getCustomers();
-                will(returnValue(List.of(API_CUSTOMER)));
+                oneOf(customerService).getCustomers(pageable);
+                will(returnValue(new PageImpl<>(Collections.singletonList(API_CUSTOMER))));
             }
         });
 
         CustomerController customerController = new CustomerController(customerService);
 
-        ResponseEntity responseEntity = customerController.getCustomers();
+        ResponseEntity responseEntity = customerController.getCustomers(Pageable.ofSize(1));
         assertThat(responseEntity.getStatusCode(), is(equalTo(HttpStatus.OK)));
         assertThat(responseEntity.getBody(), is(notNullValue()));
     }
