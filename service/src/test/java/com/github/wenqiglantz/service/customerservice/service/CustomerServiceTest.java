@@ -98,7 +98,7 @@ public class CustomerServiceTest {
 
         CustomerService customerService = new CustomerServiceImpl(customerRepository);
         Page<CustomerInfo> customerInfos = customerService.getCustomers(pageable);
-        assertThat(customerInfos.getTotalElements(), is(equalTo(1)));
+        assertThat(customerInfos.getTotalElements(), is(equalTo(1L)));
     }
 
     @Test

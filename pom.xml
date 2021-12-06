@@ -18,7 +18,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<spring-boot.version>2.6.1</spring-boot.version>
 		<spring-cloud.version>2021.0.0</spring-cloud.version>
 		<springdoc-openapi.version>1.5.8</springdoc-openapi.version>
@@ -232,8 +232,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.version}</version>
 				<configuration>
-					<source>11</source>
-					<target>11</target>
+					<source>17</source>
+					<target>17</target>
 					<forceJavacCompilerUse>true</forceJavacCompilerUse> <!--https://issues.apache.org/jira/browse/MCOMPILER-346-->
 				</configuration>
 			</plugin>
