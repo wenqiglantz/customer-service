@@ -57,3 +57,6 @@
 
 For testing purpose, we are using EMQ X MQTT public broker [https://www.emqx.io/mqtt/public-mqtt5-broker](https://www.emqx.io/mqtt/public-mqtt5-broker).
 
+### Pact testing
+
+To run Pact testing, please ensure to update the root pom's pact broker configuration (in placeholder currently) to your desired values.

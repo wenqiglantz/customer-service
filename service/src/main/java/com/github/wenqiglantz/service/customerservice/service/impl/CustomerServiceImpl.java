@@ -15,6 +15,9 @@ import io.dapr.client.domain.Metadata;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -82,8 +85,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerInfo> getCustomers() {
-        List<Customer> customers = customerRepository.findAll();
+    public Page<CustomerInfo> getCustomers(Pageable pageable) {
+        Page<Customer> customers = customerRepository.findAll(pageable);
 
         List<CustomerInfo> customerInfos = customers.stream()
                 .map(customer -> CustomerInfo.builder()
@@ -93,7 +96,7 @@ public class CustomerServiceImpl implements CustomerService {
                         .build())
                 .collect(toList());
 
-        return customerInfos;
+        return new PageImpl<>(customerInfos, pageable, customers.getTotalElements());
     }
 
     @Override

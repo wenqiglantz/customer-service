@@ -2,6 +2,8 @@ package com.github.wenqiglantz.service.customerservice.service;
 
 
 import com.github.wenqiglantz.service.customerservice.data.CustomerInfo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -9,7 +11,7 @@ public interface CustomerService {
 
     CustomerInfo saveCustomer(CustomerInfo customerInfo) throws Exception;
 
-    List<CustomerInfo> getCustomers();
+    Page<CustomerInfo> getCustomers(Pageable pageable);
 
     CustomerInfo getCustomer(String customerId);
 

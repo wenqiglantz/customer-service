@@ -13,7 +13,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.springframework.data.domain.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,16 +88,17 @@ public class CustomerServiceTest {
 
     @Test
     public void getCustomers() {
+        Pageable pageable = PageRequest.of(0, 20, Sort.by("firstName"));
         context.checking(new Expectations() {
             {
-                oneOf(customerRepository).findAll();
-                will(returnValue(List.of(CUSTOMER)));
+                oneOf(customerRepository).findAll(pageable);
+                will(returnValue(new PageImpl<>(Collections.singletonList(CUSTOMER))));
             }
         });
 
         CustomerService customerService = new CustomerServiceImpl(customerRepository);
-        List<CustomerInfo> customerInfos = customerService.getCustomers();
-        assertThat(customerInfos.size(), is(greaterThan(0)));
+        Page<CustomerInfo> customerInfos = customerService.getCustomers(pageable);
+        assertThat(customerInfos.getTotalElements(), is(equalTo(1L)));
     }
 
     @Test
