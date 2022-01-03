@@ -1,6 +1,7 @@
 package com.github.wenqiglantz.service.customerservice.persistence.entity;
 
 import lombok.Getter;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ import static java.time.LocalDateTime.now;
 
 @Getter
 @MappedSuperclass
+@Audited
 public abstract class BaseEntity implements Serializable {
 
     @Id

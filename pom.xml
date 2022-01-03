@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.1</version>
+		<version>2.6.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -19,7 +19,7 @@
 
 	<properties>
 		<java.version>17</java.version>
-		<spring-boot.version>2.6.1</spring-boot.version>
+		<spring-boot.version>2.6.2</spring-boot.version>
 		<spring-cloud.version>2021.0.0</spring-cloud.version>
 		<springdoc-openapi.version>1.5.8</springdoc-openapi.version>
 		<lombok.version>1.18.20</lombok.version>
@@ -33,6 +33,7 @@
 		<cucumber.version>6.10.4</cucumber.version>
 		<cucumber-reporting.version>5.5.3</cucumber-reporting.version>
 		<pact-provider-junit5.version>4.2.9</pact-provider-junit5.version>
+		<spring.data.envers.version>2.6.0</spring.data.envers.version>
 
 		<maven.compiler.version>3.8.1</maven.compiler.version>
 		<maven.surefire.version>2.22.2</maven.surefire.version>
@@ -99,6 +100,11 @@
 				<artifactId>spring-boot-starter-test</artifactId>
 				<version>${spring-boot.version}</version>
 				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-envers</artifactId>
+				<version>${spring.data.envers.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springdoc</groupId>
