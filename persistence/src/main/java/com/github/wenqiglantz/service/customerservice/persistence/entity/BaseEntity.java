@@ -17,7 +17,6 @@ import static java.time.LocalDateTime.now;
 
 @Getter
 @MappedSuperclass
-@Audited
 public abstract class BaseEntity implements Serializable {
 
     @Id

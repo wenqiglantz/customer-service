@@ -20,6 +20,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.github.wenqiglantz.service.customerservice</groupId>
+			<artifactId>persistence</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.wenqiglantz.service.customerservice</groupId>
 			<artifactId>rest-controller</artifactId>
 			<scope>test</scope>
 		</dependency>
@@ -36,10 +41,6 @@
 			<artifactId>cucumber-junit-platform-engine</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>net.masterthought</groupId>
-			<artifactId>cucumber-reporting</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
@@ -51,11 +52,7 @@
 			<groupId>org.jmock</groupId>
 			<artifactId>jmock-junit5</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>com.github.wenqiglantz.service.customerservice</groupId>
-            <artifactId>persistence</artifactId>
-            <scope>test</scope>
-        </dependency>
+
     </dependencies>
 
 </project>

@@ -16,7 +16,6 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name = "CUSTOMER")
-@Audited
 public class Customer extends BaseEntity {
 
     @Column(name = "CUSTOMER_ID")

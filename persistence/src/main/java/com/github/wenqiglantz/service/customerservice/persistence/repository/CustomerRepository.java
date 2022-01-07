@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
-public interface CustomerRepository extends JpaRepository<Customer, String>, RevisionRepository<Customer, String, Integer> {
+public interface CustomerRepository extends JpaRepository<Customer, String> {
     Optional<Customer> findByCustomerId(String customerId);
 }
 
