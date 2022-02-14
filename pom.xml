@@ -33,7 +33,7 @@
 		<cucumber.version>6.11.0</cucumber.version>
 		<pact-provider-junit5.version>4.2.9</pact-provider-junit5.version>
 
-		<maven.compiler.version>3.9.0</maven.compiler.version>
+		<maven.compiler.version>3.10.0</maven.compiler.version>
 		<maven.surefire.version>2.22.2</maven.surefire.version>
 		<jacoco.maven.version>0.8.7</jacoco.maven.version>
 		<coverage.instruction.threshold>0.90</coverage.instruction.threshold>
