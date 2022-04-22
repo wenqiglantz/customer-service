@@ -21,7 +21,7 @@
 		<java.version>17</java.version>
 		<spring-boot.version>2.6.6</spring-boot.version>
 		<spring-cloud.version>2021.0.0</spring-cloud.version>
-		<springdoc-openapi.version>1.6.7</springdoc-openapi.version>
+		<springdoc-openapi.version>1.6.8</springdoc-openapi.version>
 		<lombok.version>1.18.24</lombok.version>
 		<mssql-jdbc.version>11.1.0.jre11-preview</mssql-jdbc.version>
 		<commons-codec.version>1.15</commons-codec.version>
