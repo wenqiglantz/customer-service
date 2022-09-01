@@ -9,15 +9,23 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:  # added using https://github.com/step-security/secure-workflows
+  contents: read
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Harden Runner
+      uses: step-security/harden-runner@dd2c410b088af7c0dc8046f3ac9a8f4148492a95
+      with:
+        egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
+    - uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e
     - name: Setup jdk-17
-      uses: actions/setup-java@main
+      uses: actions/setup-java@5b36705a13905facb447b6812d613a06a07e371d
       with:
         java-version: 17
         distribution: 'adopt'
@@ -34,7 +42,12 @@ jobs:
       contents: write
 
     steps:
-      - uses: fastify/github-action-merge-dependabot@v3.0.0
+      - name: Harden Runner
+        uses: step-security/harden-runner@dd2c410b088af7c0dc8046f3ac9a8f4148492a95
+        with:
+          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
+      - uses: fastify/github-action-merge-dependabot@35d92790eac1b82eb5b6f4a0b48fedced08edb63
         if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request' }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
