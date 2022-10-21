@@ -75,6 +75,8 @@ jobs:
     #- run: |
     #   echo "Run, Build Application"
     #   mvn clean install
+    
+    - run: codeql database upgrade ../../_temp/codeql_databases/java
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
