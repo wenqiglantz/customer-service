@@ -319,7 +319,7 @@
 			<plugin>
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
-				<version>9.0.3</version>
+				<version>9.0.4</version>
 				<configuration>
 					<suppressionFiles>
 						<suppressionFile>dependency-check-suppression.xml</suppressionFile>
