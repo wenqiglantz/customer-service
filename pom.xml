@@ -28,7 +28,7 @@
 		<dapr.version>1.11.0</dapr.version>
 		<okhttp3.version>4.12.0</okhttp3.version>
 		<commons-cli.version>1.6.0</commons-cli.version>
-		<jmock.version>2.13.0</jmock.version>
+		<jmock.version>2.13.1</jmock.version>
 		<wiremock.version>2.8.0</wiremock.version>
 		<cucumber.version>6.11.0</cucumber.version>
 		<pact-provider-junit5.version>4.2.9</pact-provider-junit5.version>
