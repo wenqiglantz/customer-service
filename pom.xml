@@ -27,7 +27,7 @@
 		<commons-codec.version>1.17.0</commons-codec.version>
 		<dapr.version>1.11.0</dapr.version>
 		<okhttp3.version>4.12.0</okhttp3.version>
-		<commons-cli.version>1.7.0</commons-cli.version>
+		<commons-cli.version>1.8.0</commons-cli.version>
 		<jmock.version>2.13.1</jmock.version>
 		<wiremock.version>2.8.0</wiremock.version>
 		<cucumber.version>6.11.0</cucumber.version>
