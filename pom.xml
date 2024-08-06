@@ -336,7 +336,7 @@
 			<plugin>
 				<groupId>au.com.dius.pact.provider</groupId>
 				<artifactId>maven</artifactId>
-				<version>4.6.11</version>
+				<version>4.6.12</version>
 				<configuration>
 					<pactDirectory>./rest-controller/target/pacts</pactDirectory> <!-- Defaults to ${project.build.directory}/pacts -->
 					<pactBrokerUrl>https://[your_pactflow_domain].pactflow.io/</pactBrokerUrl>
