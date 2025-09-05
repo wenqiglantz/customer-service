@@ -22,7 +22,7 @@
 		<spring-boot.version>3.5.5</spring-boot.version>
 		<spring-cloud.version>2021.0.0</spring-cloud.version>
 		<springdoc-openapi.version>1.8.0</springdoc-openapi.version>
-		<lombok.version>1.18.38</lombok.version>
+		<lombok.version>1.18.40</lombok.version>
 		<mssql-jdbc.version>13.2.0.jre11</mssql-jdbc.version>
 		<commons-codec.version>1.19.0</commons-codec.version>
 		<dapr.version>1.15.1</dapr.version>
