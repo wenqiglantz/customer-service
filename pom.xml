@@ -24,7 +24,7 @@
 		<springdoc-openapi.version>1.8.0</springdoc-openapi.version>
 		<lombok.version>1.18.42</lombok.version>
 		<mssql-jdbc.version>13.2.1.jre11</mssql-jdbc.version>
-		<commons-codec.version>1.19.0</commons-codec.version>
+		<commons-codec.version>1.20.0</commons-codec.version>
 		<dapr.version>1.16.0</dapr.version>
 		<okhttp3.version>5.3.0</okhttp3.version>
 		<commons-cli.version>1.10.0</commons-cli.version>
