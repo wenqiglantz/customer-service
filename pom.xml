@@ -26,7 +26,7 @@
 		<mssql-jdbc.version>13.3.0.jre11-preview</mssql-jdbc.version>
 		<commons-codec.version>1.20.0</commons-codec.version>
 		<dapr.version>1.16.0</dapr.version>
-		<okhttp3.version>5.3.1</okhttp3.version>
+		<okhttp3.version>5.3.2</okhttp3.version>
 		<commons-cli.version>1.11.0</commons-cli.version>
 		<jmock.version>2.13.1</jmock.version>
 		<wiremock.version>2.8.0</wiremock.version>
